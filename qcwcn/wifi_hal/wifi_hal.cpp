@@ -896,7 +896,7 @@ wifi_error wifi_initialize(wifi_handle *handle)
     }
 
     ALOGV("Initialized Wifi HAL Successfully; vendor cmd = %d Supported"
-            " features : %lx", NL80211_CMD_VENDOR, info->supported_feature_set);
+            " features : 0x%" PRIx64, NL80211_CMD_VENDOR, info->supported_feature_set);
 
     if (wifi_is_nan_ext_cmd_supported(iface_handle))
         info->support_nan_ext_cmd = true;
@@ -1895,10 +1895,10 @@ wifi_error wifi_get_supported_feature_set(wifi_interface_handle iface,
     ret = acquire_supported_features(iface, set);
     if (ret != WIFI_SUCCESS) {
         *set = info->supported_feature_set;
-        ALOGV("Supported feature set acquired at initialization : %lx", *set);
+        ALOGV("Supported feature set acquired at initialization : 0x%" PRIx64, *set);
     } else {
         info->supported_feature_set = *set;
-        ALOGV("Supported feature set acquired : %lx", *set);
+        ALOGV("Supported feature set acquired : 0x%" PRIx64, *set);
     }
     return WIFI_SUCCESS;
 }
